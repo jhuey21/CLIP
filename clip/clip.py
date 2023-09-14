@@ -4,10 +4,11 @@ import urllib
 import warnings
 from typing import Any, Union, List
 from pkg_resources import packaging
-
+print("import clip_torch")
 import torch
-from PIL import Image
+print("import clip_torchviz")
 from torchvision.transforms import Compose, Resize, CenterCrop, ToTensor, Normalize
+print("succeded_torchviz")
 from tqdm import tqdm
 
 from .model import build_model
@@ -17,7 +18,8 @@ try:
     from torchvision.transforms import InterpolationMode
     BICUBIC = InterpolationMode.BICUBIC
 except ImportError:
-    BICUBIC = Image.BICUBIC
+    print("InterpolationMode not found in torchvision; NO BICUBIC INTERPOLATION IS CURRENTLY IMPLEMENTED\n\n")
+    # BICUBIC = Image.BICUBIC
 
 
 if packaging.version.parse(torch.__version__) < packaging.version.parse("1.7.1"):
